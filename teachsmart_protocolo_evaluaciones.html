@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TeachSmart · Protocolo de Pruebas y Evaluaciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1a1714;--ink2:#3d3830;--ink3:#7a7066;--paper:#faf7f2;--paper2:#f1ece2;--paper3:#e2d9c8;--accent:#8a1f11;--accent2:#c4430a;--rule:#d6cbb6;--serif:'Source Serif 4',Georgia,serif;--display:'Playfair Display',Georgia,serif;--mono:'DM Mono',monospace;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.7;font-weight:300;}
+  .site-header{background:var(--ink);padding:0 40px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;height:52px;border-bottom:2px solid var(--accent2);}
+  .brand{font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:white;opacity:.9;}
+  .unit-label{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:#e8a080;text-transform:uppercase;}
+  .doc{max-width:760px;margin:0 auto;padding:64px 32px 120px;}
+  .cover-line{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);margin-bottom:16px;}
+  h1{font-family:var(--display);font-size:clamp(32px,5vw,50px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:12px;}
+  h1 em{font-style:italic;color:var(--accent2);}
+  .subtitle{font-size:18px;font-style:italic;color:var(--ink3);margin-bottom:32px;padding-bottom:28px;border-bottom:1px solid var(--rule);}
+  .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--rule);margin-bottom:40px;}
+  .meta div{background:var(--paper2);padding:12px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink3);}
+  .meta strong{display:block;color:var(--ink);font-weight:500;font-size:12px;margin-top:2px;}
+  h2{font-family:var(--display);font-size:25px;font-weight:700;margin:48px 0 16px;padding-top:8px;border-top:2px solid var(--ink);}
+  h2 .n{font-family:var(--mono);font-size:12px;color:var(--accent2);letter-spacing:.15em;display:block;margin-bottom:4px;font-weight:500;}
+  h3{font-size:16px;font-weight:600;margin:24px 0 8px;}
+  p{margin-bottom:1.1em;}
+  ul,ol{margin:0 0 1.2em 1.3em;}
+  li{margin-bottom:.45em;}
+  .rule{border:1px solid var(--rule);background:white;margin:20px 0;}
+  .rule-head{display:flex;gap:16px;align-items:center;padding:14px 20px;background:var(--ink);color:white;}
+  .rule-head .rn{font-family:var(--display);font-size:28px;font-weight:900;color:var(--accent2);line-height:1;}
+  .rule-head .rt{font-family:var(--serif);font-size:16px;font-weight:600;}
+  .rule-body{padding:18px 22px;}
+  .rule-body p{font-size:15.5px;margin-bottom:.7em;}
+  .rule-body ul{font-size:15px;margin-bottom:0;}
+  .tag{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;display:inline-block;margin-bottom:6px;font-weight:500;}
+  .tag.no{color:var(--accent);}
+  .tag.ok{color:#2a6049;}
+  .callout{border-left:3px solid var(--accent2);padding:18px 22px;margin:26px 0;background:var(--paper2);}
+  .callout .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px;}
+  .callout p{margin:0;font-size:15.5px;}
+  .sanction{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--rule);margin:24px 0;}
+  .sanction div{background:#fdf3f0;padding:22px 20px;}
+  .sanction .sn{font-family:var(--display);font-size:30px;font-weight:900;color:var(--accent);line-height:1;margin-bottom:8px;}
+  .sanction strong{display:block;font-size:15px;margin-bottom:6px;}
+  .sanction p{font-size:14px;margin:0;line-height:1.55;color:var(--ink2);}
+  table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14.5px;}
+  th{background:var(--ink);color:white;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:11px 14px;text-align:left;}
+  td{padding:10px 14px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  tr:nth-child(even) td{background:var(--paper2);}
+  .accept{border:2px solid var(--ink);padding:28px 30px;margin-top:20px;background:white;}
+  .accept p{font-size:15.5px;}
+  .check{display:flex;gap:12px;align-items:flex-start;margin:10px 0;font-size:15px;}
+  .box{width:18px;height:18px;border:1.5px solid var(--ink);flex-shrink:0;margin-top:3px;}
+  .sign{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px;}
+  .sign div{border-top:1px solid var(--ink);padding-top:6px;font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:.08em;}
+  .note{font-size:13.5px;color:var(--ink3);font-style:italic;margin-top:40px;padding-top:16px;border-top:1px solid var(--rule);}
+  @media(max-width:700px){.meta,.sanction,.sign{grid-template-columns:1fr;}.site-header{padding:0 18px;}}
+  @media print{.site-header{display:none;}body{background:white;}.doc{padding:0;}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <span class="brand">TEACHSMART</span>
+  <span class="unit-label">Protocolo de Evaluaciones</span>
+</header>
+
+<main class="doc">
+  <div class="cover-line">Documento oficial · Estudiantes</div>
+  <h1>Protocolo de pruebas y <em>evaluaciones</em></h1>
+  <p class="subtitle">Reglas de integridad académica que rigen todas las pruebas, ejercicios evaluados y el proyecto final del programa TeachSmart.</p>
+
+  <div class="meta">
+    <div>Aplica a<strong>Todas las evaluaciones del curso</strong></div>
+    <div>Destinatarios<strong>Participantes inscritos</strong></div>
+    <div>Versión<strong>1.0</strong></div>
+  </div>
+
+  <h2><span class="n">SECCIÓN 1</span>Propósito y alcance</h2>
+  <p>La certificación TeachSmart acredita que una persona sabe enseñar. Ese valor solo existe si cada certificado refleja lo que su titular realmente aprendió. Este protocolo garantiza que las evaluaciones midan el desempeño propio de cada participante, en igualdad de condiciones para todos.</p>
+  <p>Aplica a las pruebas de avance de cada unidad, a las evaluaciones finales y al Proyecto Aplicado. Al inscribirte en el curso, aceptas cumplirlo en su totalidad.</p>
+
+  <h2><span class="n">SECCIÓN 2</span>Las cinco reglas</h2>
+
+  <div class="rule">
+    <div class="rule-head"><span class="rn">1</span><span class="rt">No se permite consultar recursos no autorizados</span></div>
+    <div class="rule-body">
+      <p>Cada evaluación indica al inicio qué recursos están autorizados. Si la evaluación no los menciona, <strong>se entiende que no hay ninguno</strong>.</p>
+      <span class="tag no">Prohibido</span>
+      <ul>
+        <li>Consultar los artículos del curso, apuntes, libros, buscadores o sitios web cuando la prueba no lo autoriza expresamente.</li>
+        <li>Recibir ayuda de otra persona, presencial o remota, durante la prueba.</li>
+        <li>Usar material de otros participantes o respuestas de ediciones anteriores.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head"><span class="rn">2</span><span class="rt">Safe Exam Browser es obligatorio en todas las pruebas</span></div>
+    <div class="rule-body">
+      <p>Toda prueba se presenta exclusivamente dentro de Safe Exam Browser (SEB), que bloquea el acceso a otras aplicaciones y sitios web durante el examen.</p>
+      <ul>
+        <li>Debes instalar SEB antes de la fecha de la prueba y usar la configuración que TeachSmart te entregue. No se acepta una configuración modificada.</li>
+        <li>Una prueba iniciada fuera de SEB, o con SEB alterado o desactivado, se considera una infracción.</li>
+        <li>Cierra todas las demás aplicaciones antes de comenzar. No uses máquinas virtuales, escritorios remotos ni segundas pantallas.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head"><span class="rn">3</span><span class="rt">No se permite el uso de inteligencia artificial</span></div>
+    <div class="rule-body">
+      <p>Las respuestas, análisis, planes y justificaciones que entregues deben ser producto de tu propio razonamiento.</p>
+      <span class="tag no">Prohibido</span>
+      <ul>
+        <li>Chatbots y asistentes de IA (por ejemplo ChatGPT, Claude, Gemini, Copilot), tanto para generar respuestas como para revisarlas, mejorarlas, traducirlas o parafrasearlas.</li>
+        <li>Extensiones de navegador, corrector con IA, generadores de texto o resolutores automáticos de problemas.</li>
+        <li>Presentar como propio un texto producido total o parcialmente por una herramienta de IA.</li>
+      </ul>
+      <p style="margin-top:.8em;">Esta regla aplica tanto a las pruebas como al Proyecto Aplicado.</p>
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head"><span class="rn">4</span><span class="rt">No se permite celular ni herramientas externas</span></div>
+    <div class="rule-body">
+      <p>Para completar el curso solo puedes usar el computador desde el que presentas la prueba.</p>
+      <span class="tag no">Prohibido durante las evaluaciones</span>
+      <ul>
+        <li>Teléfono celular, tableta, reloj inteligente u otro dispositivo adicional, incluso apagado a la vista.</li>
+        <li>Calculadoras, traductores, aplicaciones de notas o cualquier herramienta externa que la prueba no autorice expresamente.</li>
+        <li>Auriculares o dispositivos de comunicación.</li>
+      </ul>
+      <p style="margin-top:.8em;">Excepción: si una prueba autoriza una herramienta concreta, lo indicará de forma explícita en sus instrucciones.</p>
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="rule-head"><span class="rn">5</span><span class="rt">No se divulga el contenido de los exámenes</span></div>
+    <div class="rule-body">
+      <p>Las preguntas, casos, rúbricas y respuestas son confidenciales. Compartirlos perjudica a quienes presentarán la prueba después y debilita el valor de la certificación de todos.</p>
+      <span class="tag no">Prohibido</span>
+      <ul>
+        <li>Capturar pantalla, fotografiar, grabar, copiar o transcribir preguntas o casos.</li>
+        <li>Compartir el contenido, de forma total o parcial, por mensajería, redes sociales, foros, grupos o de manera oral.</li>
+        <li>Describir a otro participante qué preguntas salieron o cómo se resolvieron.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2><span class="n">SECCIÓN 3</span>Procedimiento de cada evaluación</h2>
+  <table>
+    <thead><tr><th>Momento</th><th>Qué debes hacer</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Antes</strong></td><td>Instalar SEB con la configuración oficial y verificar que abre. Probar tu conexión. Elegir un lugar tranquilo, sin otras personas ni dispositivos a tu alcance. Cerrar todas las demás aplicaciones.</td></tr>
+      <tr><td><strong>Durante</strong></td><td>Permanecer dentro de SEB hasta enviar la prueba. Respetar el tiempo indicado. No salir del entorno ni intentar evadir las restricciones.</td></tr>
+      <tr><td><strong>Después</strong></td><td>No comentar, resumir ni compartir el contenido de la prueba. Las dudas sobre una pregunta se plantean únicamente al equipo de TeachSmart por el canal oficial.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Problemas técnicos</h3>
+  <p>Si SEB falla o se interrumpe tu conexión durante una prueba, no intentes continuar por otro medio. Escribe de inmediato al canal de soporte indicado en el curso y conserva evidencia del problema (hora y descripción). El equipo evaluará si corresponde reprogramar. Continuar por fuera de SEB cuenta como infracción, sin importar el motivo.</p>
+
+  <h2><span class="n">SECCIÓN 4</span>Consecuencias de las infracciones</h2>
+  <p>El incumplimiento de cualquiera de las cinco reglas, una vez comprobado, tiene las siguientes consecuencias, que se aplican en conjunto:</p>
+  <div class="sanction">
+    <div>
+      <div class="sn">1</div>
+      <strong>Anulación de la certificación</strong>
+      <p>Se anula la certificación obtenida o en curso, y se retira cualquier constancia emitida.</p>
+    </div>
+    <div>
+      <div class="sn">2</div>
+      <strong>Cancelación del curso sin devolución</strong>
+      <p>Se cancela tu participación en el programa. No hay reembolso del dinero pagado.</p>
+    </div>
+    <div>
+      <div class="sn">3</div>
+      <strong>Prohibición de reinscripción</strong>
+      <p>No podrás volver a inscribirte en ningún programa de la empresa.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="lbl">Importante</span>
+    <p>Estas consecuencias aplican sin importar el tamaño de la infracción ni si obtuviste ventaja real. Intentarlo basta. Además, quien facilite o encubra una infracción de otro participante responde igual que quien la comete.</p>
+  </div>
+
+  <h2><span class="n">SECCIÓN 5</span>Cómo se verifica y se resuelve una sospecha</h2>
+  <p>Ninguna sanción se aplica de forma automática. Toda sospecha sigue este procedimiento:</p>
+  <ol>
+    <li><strong>Detección.</strong> A partir de los registros de SEB, de la revisión de las entregas, de señales técnicas o de un reporte.</li>
+    <li><strong>Notificación.</strong> Se te informa por escrito qué se te atribuye y con qué evidencia.</li>
+    <li><strong>Derecho a responder.</strong> Tienes un plazo de <strong>5 días hábiles</strong> para presentar tu versión y tus pruebas.</li>
+    <li><strong>Decisión.</strong> La dirección académica decide de forma motivada y la comunica por escrito.</li>
+  </ol>
+  <p>Mientras el proceso está abierto, tu certificación y tus resultados quedan en suspenso.</p>
+
+  <h2><span class="n">SECCIÓN 6</span>Aceptación del participante</h2>
+  <div class="accept">
+    <p><strong>Declaro que he leído y comprendido este protocolo y que:</strong></p>
+    <div class="check"><span class="box"></span><span>Presentaré todas las pruebas únicamente dentro de Safe Exam Browser.</span></div>
+    <div class="check"><span class="box"></span><span>No consultaré recursos no autorizados ni usaré inteligencia artificial.</span></div>
+    <div class="check"><span class="box"></span><span>No usaré celular ni herramientas externas para completar el curso.</span></div>
+    <div class="check"><span class="box"></span><span>No divulgaré, por ningún medio, el contenido de los exámenes.</span></div>
+    <div class="check"><span class="box"></span><span>Acepto que, ante una infracción comprobada, se anulará mi certificación, se cancelará el curso sin devolución del dinero y no podré reinscribirme.</span></div>
+    <div class="sign">
+      <div>NOMBRE COMPLETO Y DOCUMENTO</div>
+      <div>FIRMA Y FECHA</div>
+    </div>
+  </div>
+
+  <p class="note">Texto base elaborado para uso interno. Antes de aplicarlo, conviene que un abogado lo revise frente a la normativa de consumo y protección de datos aplicable a tu jurisdicción, y que el protocolo se publique y se acepte al momento de la inscripción y el pago, no después.</p>
+</main>
+</body>
+</html>
